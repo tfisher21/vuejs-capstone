@@ -1,9 +1,17 @@
 <template>
   <div class="users">
     <h1>{{ message }}</h1>
-    <div v-for="user in users">
-      <h3>{{ user.first_name }} {{ user.last_name }}</h3>
-      <p>{{ user.email }}</p>
+    <div class="row">
+      <div v-for="user in users" class="col my-2">
+        <div class="card h-100">
+          <div class="card-body">
+            <h3 class="card-title">{{ user.first_name }} {{ user.last_name }}</h3>
+            <p class="card-subtitle text-muted">{{ user.email }}</p>
+            <p class="card-text">{{ showCohortName(user) }}</p>
+            <p class="card-text">Posts: {{ user.post_count }}</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -32,7 +40,13 @@ export default {
       this.users = response.data;
     }.bind(this));
   },
-  methods: {},
+  methods: {
+    showCohortName: function(user) {
+      if (user.cohort) {
+        return user.cohort.name;
+      }
+    }
+  },
   computed: {}
 };
 </script>
