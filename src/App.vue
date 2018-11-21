@@ -6,9 +6,24 @@
       <router-link to="/users">Users</router-link> |
       <router-link to="/signup">Signup</router-link> |
       <router-link to="/login">Login</router-link> |
-      <router-link to="/logout">Logout</router-link>
+      <router-link to="/logout">Logout</router-link> |
     </div>
-    <router-view/>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-3">
+            <div class="row">
+              <div v-if="user != {}" class="card w-100 h-100">
+                <div class="card-body">
+                  <h5 class="card-title">{{ user.first_name }} {{ user.last_name }}</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-9">
+            <router-view/>
+          </div>
+        </div>
+      </div>
   </div>
 </template>
 
@@ -33,3 +48,19 @@
   color: #42b983;
 }
 </style>
+
+<script>
+export default {
+  template: "#login-page",
+  data: function() {
+    return {
+      user: {}
+    };
+  },
+  created: function() {
+    console.log(localStorage.user);
+    this.user = JSON.parse(localStorage.user);
+  },
+  methods: {}
+};
+</script>

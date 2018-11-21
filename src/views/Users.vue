@@ -2,7 +2,7 @@
   <div class="users">
     <h1>{{ message }}</h1>
     <div class="row">
-      <div v-for="user in users" class="col my-2">
+      <div v-for="user in users" class="col-4 my-2">
         <div class="card h-100">
           <div class="card-body">
             <h3 class="card-title">{{ user.first_name }} {{ user.last_name }}</h3>
