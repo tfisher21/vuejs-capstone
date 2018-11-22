@@ -48,11 +48,7 @@ export default {
           axios.defaults.headers.common["Authorization"] =
             "Bearer " + response.data.jwt;
           localStorage.setItem("jwt", response.data.jwt);
-          axios.get("http://localhost:3000/api/users/" + response.data.user_id).then(response => {
-            localStorage.setItem("user", JSON.stringify(response.data));
-            console.log(response.data);
-          });
-          this.$router.push("/");
+          this.$router.push("/posts");
         })
         .catch(error => {
           this.errors = ["Invalid email or password."];

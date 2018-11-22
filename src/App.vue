@@ -1,14 +1,30 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/users">Users</router-link> |
-      
-      <router-link to="/signup">Signup</router-link> |
-      <router-link to="/login">Login</router-link> |
-      <router-link to="/logout">Logout</router-link>
-    </div>
-      <div class="container-fluid">
+    <nav id="nav" class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item">
+          <router-link class="nav-link" to="/">Home</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link class="nav-link" to="/signup">Signup</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link class="nav-link" to="/login">Login</router-link>
+        </li>
+        <li class="nav-item">
+        </li>
+        <li class="nav-item">
+          <router-link class="nav-link" to="/logout">Logout</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link class="nav-link" to="/users">Users</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link class="nav-link" to="/posts">Posts</router-link>
+        </li>
+      </ul>
+    </nav>
+      <div class="container-fluid mt-4">
         <router-view/>
       </div>
   </div>
@@ -21,9 +37,6 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-#nav {
-  padding: 30px;
 }
 
 #nav a {
@@ -44,10 +57,7 @@ export default {
       user: {}
     };
   },
-  created: function() {
-    console.log(localStorage.user);
-    this.user = JSON.parse(localStorage.user);
-  },
+  created: function() {},
   methods: {}
 };
 </script>
