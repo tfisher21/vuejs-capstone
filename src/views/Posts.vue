@@ -1,13 +1,21 @@
 <template>
   <div class="users">
-    <h1>{{ message }}</h1>
-    <div v-for="post in posts" class="row justify-content-center">
-      <div class="col-6 my-2">
-        <div class="card h-100">
-          <div class="card-body">
-            <h3 class="card-title">{{ post.title }}</h3>
-            <p class="card-subtitle text-muted">{{ post.author }}</p>
-            <p class="card-text">{{ post.content }}</p>
+    <div class="row justify-content-end">
+      <div class="col-6">
+        <h1>{{ message }}</h1>
+      </div>
+      <div class="col-3">
+        <button class="btn btn-vuejs">Create New Post</button>
+      </div>
+    </div>
+      <div v-for="post in posts" class="row justify-content-center">
+        <div class="col-6">
+          <div class="card h-100">
+            <div class="card-body">
+              <h3 class="card-title">{{ post.title }}</h3>
+              <p class="card-subtitle text-muted">{{ post.author }}</p>
+              <p class="card-text">{{ post.content }}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -16,6 +24,10 @@
 </template>
 
 <style>
+.btn-vuejs {
+  background-color: #42b983;
+  color: white;
+}
 </style>
 
 <script>
