@@ -5,7 +5,14 @@
       <div class="col-6">
 
         <div class="card card-body">
-          <button class="btn btn-lg btn-vuejs" data-toggle="collapse" href="#newPost" role="button" aria-expanded="false" aria-controls="newPost">Create New Post</button>
+          <button class="btn btn-lg btn-vuejs" data-toggle="collapse" href="#newPost" role="button" aria-expanded="false" aria-controls="newPost" v-on:click="showCreatePost = !showCreatePost">
+            <div v-if="showCreatePost">
+              Close
+            </div>
+            <div v-else>
+              Create New Post
+            </div>
+          </button>
           <div class="collapse mt-2" id="newPost">
             <form v-on:submit.prevent="publish()">
               <input class="form-control form-control-lg my-1" type="text" v-model="newTitle" placeholder="Title">
@@ -56,7 +63,8 @@ export default {
       posts: [],
       newTitle: "",
       newContent: "",
-      errors: []
+      errors: [],
+      showCreatePost: false,
     };
   },
   created: function() {
