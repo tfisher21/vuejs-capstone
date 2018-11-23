@@ -79,8 +79,9 @@ export default {
         content: this.newContent
       };
       axios.post("http://localhost:3000/api/posts", params).then(response => {
-        this.posts = [response.data].concat(this.posts);
+        // this.posts = [response.data].concat(this.posts);
         // this.posts.push(response.data);
+        this.posts.unshift(response.data);
         this.newTitle = "";
         this.newContent = "";
       }).catch(error => {

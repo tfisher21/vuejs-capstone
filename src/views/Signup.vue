@@ -14,7 +14,6 @@
                 <option v-for="cohort in cohorts" v-bind:value="cohort.id">{{cohort.name}}</option>
               </select>
             </div>
-            <p>{{ cohortId }}</p>
             <div class="form-group">
               <label>First Name:</label>
               <input type="text" class="form-control" v-model="firstName">
