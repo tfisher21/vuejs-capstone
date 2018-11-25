@@ -1,6 +1,7 @@
 <template>
-  <div class="users">
+  <div id="posts">
     <h1>{{ message }}</h1>
+
     <div class="row justify-content-center">
       <div class="col-6"> 
         <div class="card">
@@ -49,19 +50,50 @@
             <h3 class="card-title">{{ post.title }}</h3>
             <p class="card-subtitle text-muted">{{ post.author }}</p>
             <p class="card-text">{{ post.content }}</p>
+            <button class="btn btn-vuejs" data-toggle="modal" v-on:click="currentPost = post" data-target="#comments">Comments</button>
           </div>
         </div>
       </div>
     </div>
+    <div class="modal fade" id="comments" tabindex="-1" role="dialog" aria-labelledby="commentsModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="commentsModalLabel">{{ currentPost.title }} <span class="text-muted">{{ currentPost.author }}</span></h5>
+
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div v-for="comment in currentPost.comments" class="row border-bottom">
+              <div class="col">
+                <div> {{ comment.content }} </div>
+                <div>  {{  comment.author }} </div>
+              </div>
+            </div>
+            <!-- {{ currentPost.comments }} -->
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <style>
+#posts {
+  text-align: center;
+}
+
 .btn-vuejs {
   background-color: #42b983;
   color: white;
 }
+
 </style>
 
 <script>
@@ -76,6 +108,7 @@ export default {
       newContent: "",
       errors: [],
       showCreatePost: false,
+      currentPost: {}
     };
   },
   created: function() {
@@ -120,7 +153,7 @@ export default {
       }).then(response => {
         this.posts = response.data;
       });
-    }
+    },
   },
   computed: {}
 };

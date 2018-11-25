@@ -2,7 +2,7 @@
   <div id="app">
     <nav id="nav" class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
       <div class="container-fluid">
-        <ul class="navbar-nav mx-auto">
+        <ul class="navbar-nav">
           <li class="nav-item">
             <router-link class="nav-link" to="/">Home</router-link>
           </li>
@@ -13,19 +13,23 @@
             <router-link class="nav-link" to="/posts">Posts</router-link>
           </li>
         </ul>
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <router-link class="nav-link" to="/signup">Signup</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/login">Login</router-link>
-          </li>
-          <li class="nav-item">
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/logout">Logout</router-link>
-          </li>
-        </ul>
+        <div v-if="jwt">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <router-link class="nav-link" to="/logout">Logout</router-link>
+            </li>
+          </ul>
+        </div>
+        <div v-else>
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <router-link class="nav-link" to="/signup">Signup</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/login">Login</router-link>
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
       <div class="container-fluid mt-4">
@@ -55,13 +59,16 @@
 
 <script>
 export default {
-  template: "#login-page",
   data: function() {
     return {
-      user: {}
+      jwt: false
     };
   },
-  created: function() {},
+  created: function() {
+    if (localStorage.jwt) {
+      this.jwt = true;
+    }
+  },
   methods: {}
 };
 </script>
