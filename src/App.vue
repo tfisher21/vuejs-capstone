@@ -4,13 +4,7 @@
       <div class="container-fluid">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <router-link class="nav-link" to="/">Home</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/users">Users</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/posts">Posts</router-link>
+            <router-link class="nav-link" to="/">Actualize.social</router-link>
           </li>
         </ul>
         <div v-if="jwt">
@@ -23,10 +17,10 @@
         <div v-else>
           <ul class="navbar-nav">
             <li class="nav-item">
-              <router-link class="nav-link" to="/signup">Signup</router-link>
+              <router-link class="nav-link" to="/login">Login</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" to="/login">Login</router-link>
+              <router-link class="nav-link" to="/signup">Signup</router-link>
             </li>
           </ul>
         </div>

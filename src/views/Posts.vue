@@ -56,7 +56,7 @@
       </div>
     </div>
     <div class="modal fade" id="comments" tabindex="-1" role="dialog" aria-labelledby="commentsModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="commentsModalLabel">{{ currentPost.title }} <span class="text-muted">{{ currentPost.author }}</span></h5>
@@ -67,16 +67,21 @@
           </div>
           <div class="modal-body">
             <div v-for="comment in currentPost.comments" class="row border-bottom">
-              <div class="col">
-                <div> {{ comment.content }} </div>
-                <div>  {{  comment.author }} </div>
+              <div class="col my-2">
+                <div class="text-left text-vuejs">  {{  comment.author }} </div>
+                <div class="text-left pl-4"> {{ comment.content }} </div>
+                <div class="text-right text-muted"> <small>{{ comment.created_at }}</small> </div>
               </div>
             </div>
-            <!-- {{ currentPost.comments }} -->
+            <div class="row">
+                <textarea class="form-control m-2" cols="30" rows="10" v-model="newComment" placeholder="Start writing something..."></textarea>
+            </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <form v-on:submit.prevent="publishComment(currentPost.id)">
+              <button type="button" class="btn btn-sm btn-secondary mr-1" data-dismiss="modal">Close</button>
+              <button class="btn btn-sm btn-vuejs">Add a Comment</button>
+            </form>
           </div>
         </div>
       </div>
@@ -94,6 +99,10 @@
   color: white;
 }
 
+.text-vuejs {
+  color: #42b983;
+}
+
 </style>
 
 <script>
@@ -108,7 +117,8 @@ export default {
       newContent: "",
       errors: [],
       showCreatePost: false,
-      currentPost: {}
+      currentPost: {},
+      newComment: ""
     };
   },
   created: function() {
@@ -154,6 +164,22 @@ export default {
         this.posts = response.data;
       });
     },
+    publishComment: function() {
+      var params = {
+        content: this.newComment,
+        post_id: this.currentPost.id
+      };
+      console.log(this.currentPost.id);
+      axios.post("http://localhost:3000/api/post_comments", params
+      ).then(response => {
+        console.log(response.data);
+        this.currentPost.comments.push(response.data);
+        this.newComment = "";
+      }).catch(errors => {
+        console.log(errors.response.data.errors);
+        this.errors = errors.response.data.errors;
+      });
+    }
   },
   computed: {}
 };
