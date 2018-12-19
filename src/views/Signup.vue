@@ -3,38 +3,44 @@
     <div class="container">
       <div class="row">
         <div class="col-6 mx-auto">
-          <form v-on:submit.prevent="submit()">
+          <form v-on:submit.prevent="submit();">
             <h1>Signup</h1>
             <ul>
               <li class="text-danger" v-for="error in errors">{{ error }}</li>
             </ul>
             <div class="form-group">
               <label>Cohort:</label>
-              <select class="custom-select" v-model="cohortId" >
-                <option v-for="cohort in cohorts" v-bind:value="cohort.id">{{cohort.name}}</option>
+              <select class="custom-select" v-model="cohortId">
+                <option v-for="cohort in cohorts" v-bind:value="cohort.id">{{
+                  cohort.name
+                }}</option>
               </select>
             </div>
             <div class="form-group">
               <label>First Name:</label>
-              <input type="text" class="form-control" v-model="firstName">
+              <input type="text" class="form-control" v-model="firstName" />
             </div>
             <div class="form-group">
               <label>Last Name:</label>
-              <input type="text" class="form-control" v-model="lastName">
+              <input type="text" class="form-control" v-model="lastName" />
             </div>
             <div class="form-group">
               <label>Email:</label>
-              <input type="email" class="form-control" v-model="email">
+              <input type="email" class="form-control" v-model="email" />
             </div>
             <div class="form-group">
               <label>Password:</label>
-              <input type="password" class="form-control" v-model="password">
+              <input type="password" class="form-control" v-model="password" />
             </div>
             <div class="form-group">
               <label>Password confirmation:</label>
-              <input type="password" class="form-control" v-model="passwordConfirmation">
+              <input
+                type="password"
+                class="form-control"
+                v-model="passwordConfirmation"
+              />
             </div>
-            <input type="submit" class="btn btn-vuejs" value="Submit">
+            <input type="submit" class="btn btn-vuejs" value="Submit" />
           </form>
         </div>
       </div>
@@ -66,11 +72,14 @@ export default {
     };
   },
   created: function() {
-    axios.get("http://localhost:3000/api/cohorts").then(response => {
-      this.cohorts = response.data;
-    }).catch(error => {
-      this.errors = error.response.data.errors;
-    });
+    axios
+      .get("http://capstone.tyler.fish/api/cohorts")
+      .then(response => {
+        this.cohorts = response.data;
+      })
+      .catch(error => {
+        this.errors = error.response.data.errors;
+      });
   },
   methods: {
     submit: function() {
@@ -84,7 +93,7 @@ export default {
           password_confirmation: this.passwordConfirmation
         };
         axios
-          .post("http://localhost:3000/api/users", params)
+          .post("http://capstone.tyler.fish/api/users", params)
           .then(response => {
             this.$router.push("/login");
           })

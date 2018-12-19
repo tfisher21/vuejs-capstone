@@ -52,10 +52,11 @@
 </style>
 
 <script>
+
 export default {
   data: function() {
     return {
-      jwt: false
+      jwt: false,
     };
   },
   created: function() {
