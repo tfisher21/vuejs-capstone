@@ -4,8 +4,12 @@
     <div class="row">
       <div v-for="user in users" class="col-4 my-2">
         <div class="card h-100">
-          <div class="card-body">
+          <div class="card-body pb-1">
             <h3 class="card-title">
+              <img
+                :src="user.avatar"
+                class="img-thumbnail rounded-circle w-25 h-25"
+              />
               {{ user.first_name }} {{ user.last_name }}
             </h3>
             <p class="card-subtitle text-muted">{{ user.email }}</p>
