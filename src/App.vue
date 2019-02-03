@@ -9,12 +9,12 @@
           <li class="nav-item">
             <router-link class="nav-link" to="/">Actualize.social</router-link>
           </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/users">Users</router-link>
+          </li>
         </ul>
         <div v-if="jwt">
           <ul class="navbar-nav">
-            <li class="nav-item">
-              <router-link class="nav-link" to="/users">Users</router-link>
-            </li>
             <li class="nav-item">
               <router-link class="nav-link" to="/logout">Logout</router-link>
             </li>

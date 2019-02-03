@@ -2,6 +2,7 @@ import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
 import Users from "./views/Users.vue";
+import User from "./views/User.vue";
 import Signup from "./views/Signup.vue";
 import Login from "./views/Login.vue";
 import Logout from "./views/Logout.vue";
@@ -20,6 +21,11 @@ export default new Router({
       path: "/users",
       name: "users",
       component: Users
+    },
+    {
+      path: "/user/:id",
+      name: "user",
+      component: User
     },
     {
       path: "/signup",
