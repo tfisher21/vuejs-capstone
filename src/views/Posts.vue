@@ -8,12 +8,12 @@
           <div class="card-header">
             <ul class="nav nav-pills nav-justified">
               <li class="nav-item">
-                <a class="nav-link" href="#" v-on:click="showCohortPosts();"
+                <a class="nav-link" href="#" v-on:click="showCohortPosts()"
                   >Cohort Posts</a
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#" v-on:click="showAllPosts();"
+                <a class="nav-link" href="#" v-on:click="showAllPosts()"
                   >All Posts</a
                 >
               </li>
@@ -27,13 +27,13 @@
               role="button"
               aria-expanded="false"
               aria-controls="newPost"
-              v-on:click="showCreatePost = !showCreatePost;"
+              v-on:click="showCreatePost = !showCreatePost"
             >
               <div v-if="showCreatePost">Close</div>
               <div v-else>Create New Post</div>
             </button>
             <div class="collapse mt-2" id="newPost">
-              <form v-on:submit.prevent="publish();">
+              <form v-on:submit.prevent="publish()">
                 <input
                   class="form-control form-control-lg my-1"
                   type="text"
@@ -58,7 +58,7 @@
                       type="button"
                       class="text-right btn btn-secondary mr-1"
                       value="Clear"
-                      v-on:click="clearPost();"
+                      v-on:click="clearPost()"
                     />
                     <input
                       type="submit"
@@ -83,7 +83,7 @@
             <button
               class="btn btn-vuejs"
               data-toggle="modal"
-              v-on:click="currentPost = post;"
+              v-on:click="currentPost = post"
               data-target="#comments"
             >
               Comments
@@ -141,7 +141,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <form v-on:submit.prevent="publishComment(currentPost.id);">
+            <form v-on:submit.prevent="publishComment(currentPost.id)">
               <button
                 type="button"
                 class="btn btn-sm btn-secondary mr-1"
@@ -194,7 +194,7 @@ export default {
       sort_by_cohort: true
     };
     axios
-      .get("http://capstone.tyler.fish/api/posts", { params })
+      .get("https://capstone.tyler.fish/api/posts", { params })
       .then(response => {
         this.posts = response.data;
       });
@@ -211,7 +211,7 @@ export default {
         content: this.newContent
       };
       axios
-        .post("http://capstone.tyler.fish/api/posts", params)
+        .post("https://capstone.tyler.fish/api/posts", params)
         .then(response => {
           // this.posts = [response.data].concat(this.posts);
           // this.posts.push(response.data);
@@ -224,13 +224,13 @@ export default {
         });
     },
     showAllPosts: function() {
-      axios.get("http://capstone.tyler.fish/api/posts").then(response => {
+      axios.get("https://capstone.tyler.fish/api/posts").then(response => {
         this.posts = response.data;
       });
     },
     showCohortPosts: function() {
       axios
-        .get("http://capstone.tyler.fish/api/posts", {
+        .get("https://capstone.tyler.fish/api/posts", {
           params: {
             sort_by_cohort: true
           }
@@ -246,7 +246,7 @@ export default {
       };
       console.log(this.currentPost.id);
       axios
-        .post("http://capstone.tyler.fish/api/post_comments", params)
+        .post("https://capstone.tyler.fish/api/post_comments", params)
         .then(response => {
           console.log(response.data);
           this.currentPost.comments.push(response.data);

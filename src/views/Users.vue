@@ -33,7 +33,7 @@ export default {
   created: function() {
     axios({
       method: "get",
-      url: "http://capstone.tyler.fish/api/users"
+      url: "https://capstone.tyler.fish/api/users"
     }).then(
       function(response) {
         this.users = response.data;

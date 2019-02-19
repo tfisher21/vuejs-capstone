@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
         <div class="col-6 mx-auto">
-          <form v-on:submit.prevent="submit();">
+          <form v-on:submit.prevent="submit()">
             <h1>Login</h1>
             <ul>
               <li class="text-danger" v-for="error in errors">{{ error }}</li>
@@ -49,7 +49,7 @@ export default {
         password: this.password
       };
       axios
-        .post("http://capstone.tyler.fish/api/sessions", params)
+        .post("https://capstone.tyler.fish/api/sessions", params)
         .then(response => {
           axios.defaults.headers.common["Authorization"] =
             "Bearer " + response.data.jwt;

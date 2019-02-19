@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
         <div class="col-6 mx-auto">
-          <form v-on:submit.prevent="submit();">
+          <form v-on:submit.prevent="submit()">
             <h1>Signup</h1>
             <ul>
               <li class="text-danger" v-for="error in errors">{{ error }}</li>
@@ -73,7 +73,7 @@ export default {
   },
   created: function() {
     axios
-      .get("http://capstone.tyler.fish/api/cohorts")
+      .get("https://capstone.tyler.fish/api/cohorts")
       .then(response => {
         this.cohorts = response.data;
       })
@@ -93,7 +93,7 @@ export default {
           password_confirmation: this.passwordConfirmation
         };
         axios
-          .post("http://capstone.tyler.fish/api/users", params)
+          .post("https://capstone.tyler.fish/api/users", params)
           .then(response => {
             this.$router.push("/login");
           })
